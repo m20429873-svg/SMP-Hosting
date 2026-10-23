@@ -3,20 +3,24 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#080d18">
-<title>SMP HOSTING | Minecraft Hosting</title>
+<title>SMP HOSTING</title>
 
 <style>
 :root {
   --bg: #080d18;
-  --panel: #111a2b;
-  --border: #26364f;
-  --green: #43f59b;
+  --card: #111a2b;
+  --card2: #172238;
+  --green: #35e89b;
+  --blue: #4c8dff;
   --text: #f4f7ff;
-  --muted: #99a9c3;
+  --muted: #9baac3;
+  --red: #ff5b6e;
+  --border: #293750;
 }
 
-* { box-sizing: border-box; }
+* {
+  box-sizing: border-box;
+}
 
 body {
   margin: 0;
@@ -26,67 +30,76 @@ body {
 }
 
 header {
-  padding: 18px;
-  background: #0e1728;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: #0b1220;
   border-bottom: 1px solid var(--border);
+  padding: 15px 5%;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  gap: 10px;
+  gap: 12px;
 }
 
 .logo {
   font-size: 21px;
-  font-weight: bold;
+  font-weight: 900;
   color: var(--green);
 }
 
-button, input, select {
-  font: inherit;
+nav {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
 }
 
 button {
-  padding: 12px 15px;
   border: 0;
-  border-radius: 9px;
   cursor: pointer;
+  padding: 11px 15px;
+  border-radius: 9px;
   font-weight: bold;
+  color: white;
+  background: var(--card2);
+}
+
+button:hover {
+  filter: brightness(1.15);
 }
 
 .primary {
   background: var(--green);
-  color: #07150e;
+  color: #07170f;
 }
 
-.secondary {
-  background: #253550;
-  color: white;
+.blue {
+  background: var(--blue);
 }
 
 .danger {
-  background: #572535;
-  color: #ffb6c5;
+  background: var(--red);
 }
 
-.small-btn {
-  padding: 8px 10px;
-  font-size: 13px;
+button:disabled {
+  opacity: .5;
+  cursor: not-allowed;
 }
 
-.container {
-  max-width: 1000px;
+main {
+  width: 92%;
+  max-width: 1100px;
   margin: auto;
-  padding: 18px;
 }
 
 .hero {
+  padding: 60px 0 35px;
   text-align: center;
-  padding: 38px 12px;
 }
 
 .hero h1 {
-  font-size: clamp(30px, 7vw, 48px);
-  margin: 0 0 15px;
+  font-size: clamp(32px, 7vw, 58px);
+  margin: 10px 0;
 }
 
 .hero h1 span {
@@ -98,395 +111,734 @@ button {
   line-height: 1.9;
 }
 
+.badge {
+  display: inline-block;
+  padding: 8px 13px;
+  border: 1px solid #276c52;
+  border-radius: 30px;
+  color: var(--green);
+  background: #10251f;
+}
+
+.section {
+  margin: 25px 0;
+}
+
+.section h2 {
+  font-size: 23px;
+}
+
 .grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(145px, 1fr));
-  gap: 12px;
-  margin-bottom: 20px;
-}
-
-.stat, .card {
-  background: var(--panel);
-  border: 1px solid var(--border);
-  border-radius: 14px;
-  padding: 19px;
-}
-
-.stat {
-  text-align: center;
-}
-
-.stat strong {
-  display: block;
-  font-size: 17px;
-  margin-top: 10px;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 15px;
 }
 
 .card {
-  margin-bottom: 18px;
-}
-
-.card h2 {
-  margin-top: 0;
-  font-size: 20px;
-}
-
-label {
-  display: block;
-  margin: 15px 0 8px;
-  color: #cbd6e9;
-}
-
-input, select {
-  width: 100%;
-  background: #080f1e;
+  background: var(--card);
   border: 1px solid var(--border);
-  color: white;
-  padding: 13px;
-  border-radius: 8px;
+  padding: 20px;
+  border-radius: 15px;
+  margin-bottom: 12px;
 }
 
-.full {
-  width: 100%;
-  margin-top: 15px;
+.card h3 {
+  margin-top: 0;
 }
 
 .muted {
   color: var(--muted);
+  font-size: 14px;
   line-height: 1.8;
-  font-size: 13px;
 }
 
-.notice {
-  background: #282313;
-  border: 1px solid #68542a;
-  color: #ffe2a0;
+label {
+  display: block;
+  margin: 15px 0 7px;
+  color: #dce5f5;
+  font-size: 14px;
+}
+
+input, select {
+  width: 100%;
   padding: 13px;
   border-radius: 9px;
-  line-height: 1.8;
-  font-size: 13px;
-}
-
-.hidden {
-  display: none !important;
-}
-
-.server {
-  padding: 16px;
-  margin-top: 12px;
-  background: #0b1323;
   border: 1px solid var(--border);
-  border-radius: 11px;
+  background: #091221;
+  color: white;
+  outline: none;
 }
 
-.server-head {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 10px;
-  flex-wrap: wrap;
+input:focus, select:focus {
+  border-color: var(--green);
 }
 
-.server-name {
-  font-weight: bold;
-  font-size: 17px;
-}
-
-.tag {
-  color: var(--green);
-  font-size: 12px;
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 12px;
 }
 
 .actions {
   display: flex;
   gap: 8px;
   flex-wrap: wrap;
-  margin-top: 12px;
+  margin-top: 15px;
 }
 
-.actions button {
-  flex: 1;
-  min-width: 100px;
+.status {
+  color: var(--green);
+  font-weight: bold;
 }
 
-.owner-badge {
-  background: #493b16;
-  color: #ffe09a;
-  padding: 7px 10px;
-  border-radius: 8px;
+.hidden {
+  display: none !important;
+}
+
+.server-icon {
+  font-size: 35px;
+}
+
+.server-top {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.tag {
   font-size: 12px;
+  background: #24344d;
+  border-radius: 20px;
+  padding: 5px 9px;
+}
+
+hr {
+  border: 0;
+  border-top: 1px solid var(--border);
+  margin: 20px 0;
+}
+
+.notice {
+  border-right: 4px solid var(--blue);
+  background: #101d32;
+  padding: 13px;
+  border-radius: 8px;
+  color: #d8e6ff;
+  line-height: 1.8;
 }
 
 footer {
   text-align: center;
-  padding: 25px;
   color: var(--muted);
+  padding: 30px 10px;
+  margin-top: 40px;
   border-top: 1px solid var(--border);
-  margin-top: 25px;
 }
 
+@media (max-width: 500px) {
+  header {
+    padding: 12px;
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  nav {
+    width: 100%;
+  }
+
+  nav button {
+    flex: 1;
+  }
+
+  .hero {
+    padding-top: 35px;
+  }
+}
 </style>
 </head>
 
 <body>
 
 <header>
-  <div class="logo">⚡ SMP HOSTING</div>
-  <button class="secondary small-btn" onclick="showLogin()">
-    تسجيل الدخول
-  </button>
+  <div class="logo">⛏ SMP HOSTING</div>
+
+  <nav>
+    <button onclick="showPage('home')">الرئيسية</button>
+    <button onclick="showPage('servers')">سيرفراتي</button>
+    <button onclick="showPage('plugins')">البلوجينات</button>
+    <button onclick="showPage('owner')">لوحة المالك</button>
+  </nav>
 </header>
 
-<main class="container">
+<main>
 
-  <section class="hero">
-    <h1>عالمك يبدأ <span>هنا</span></h1>
+<!-- الصفحة الرئيسية -->
+<section id="home">
+
+  <div class="hero">
+    <span class="badge">✦ استضافة ماينكرافت</span>
+
+    <h1>أنشئ عالمك مع <span>SMP HOSTING</span></h1>
+
     <p>
-      منصة Minecraft SMP الخاصة بك.<br>
-      Java وBedrock، مع لوحة لإدارة سيرفراتك.
-    </p>
-  </section>
-
-  <section class="grid">
-    <div class="stat">☕<strong>Java Edition</strong></div>
-    <div class="stat">📱<strong>Bedrock Edition</strong></div>
-    <div class="stat">🔌<strong>إدارة البلوجينات</strong></div>
-    <div class="stat">⏰<strong>دعم التشغيل المستمر</strong></div>
-  </section>
-
-  <section class="card hidden" id="loginCard">
-    <h2>🔐 تسجيل الدخول</h2>
-
-    <p class="muted">
-      يجب إعداد Firebase Authentication لتمكين تسجيل الدخول الحقيقي.
+      أنشئ مشروع سيرفرك، واختر الإصدار والنوع،
+      وتحكم في بيانات سيرفراتك من مكان واحد.
     </p>
 
-    <label for="email">البريد الإلكتروني</label>
-    <input id="email" type="email" placeholder="name@example.com"
-           autocomplete="email">
-
-    <button class="primary full" onclick="loginNotice()">
-      متابعة
+    <button class="primary" onclick="showPage('create')">
+      ＋ إنشاء سيرفر جديد
     </button>
+  </div>
 
-    <p class="muted" id="loginMessage"></p>
+  <div class="grid">
 
-    <button class="secondary full" onclick="hideLogin()">
-      رجوع
-    </button>
-  </section>
-
-  <section class="card">
-    <h2>🎮 إنشاء سيرفر</h2>
-
-    <label for="serverName">اسم السيرفر</label>
-    <input id="serverName" maxlength="24"
-           placeholder="مثال: MySMP">
-
-    <label for="edition">النسخة</label>
-    <select id="edition">
-      <option value="Java">Java Edition</option>
-      <option value="Bedrock">Bedrock Edition</option>
-    </select>
-
-    <label for="version">الإصدار</label>
-    <select id="version">
-      <option value="latest">أحدث إصدار متاح</option>
-      <option value="1.21.8">1.21.8</option>
-      <option value="1.21.4">1.21.4</option>
-      <option value="1.20.4">1.20.4</option>
-    </select>
-
-    <button class="primary full" onclick="createServer()">
-      + إضافة إلى القائمة
-    </button>
-
-    <p class="muted" id="createMessage">
-      هذه النسخة تجريبية ولا تنشئ سيرفر ماينكرافت حقيقيًا.
-    </p>
-  </section>
-
-  <section class="card">
-    <h2>🖥️ سيرفراتي</h2>
-    <div id="servers">
-      <p class="muted">لم تتم إضافة سيرفرات إلى القائمة بعد.</p>
-    </div>
-  </section>
-
-  <section class="card hidden" id="ownerPanel">
-    <h2>👑 لوحة مالك الاستضافة</h2>
-
-    <p class="muted">
-      حساب المالك المحدد: m20429873@gmail.com
-    </p>
-
-    <div class="notice">
-      لوحة تجريبية فقط. لا يمكن منح خدمة 24/7 فعليًا قبل إعداد تسجيل الدخول
-      الآمن وربط قاعدة البيانات وخادم الاستضافة.
+    <div class="card">
+      <div class="server-icon">☕</div>
+      <h3>Java Edition</h3>
+      <p class="muted">إعداد سيرفرات Minecraft Java.</p>
     </div>
 
-    <label for="ownerServer">اسم السيرفر المراد منحه 24/7</label>
-    <input id="ownerServer" placeholder="اكتب اسم السيرفر">
+    <div class="card">
+      <div class="server-icon">📱</div>
+      <h3>Bedrock Edition</h3>
+      <p class="muted">إعداد سيرفرات Minecraft Bedrock.</p>
+    </div>
 
-    <button class="primary full" onclick="ownerAction('grant')">
-      ⏰ منح تشغيل 24/7
+    <div class="card">
+      <div class="server-icon">🧩</div>
+      <h3>إدارة البلوجينات</h3>
+      <p class="muted">قسم مخصص لتجهيز إضافات السيرفرات.</p>
+    </div>
+
+    <div class="card">
+      <div class="server-icon">⚙️</div>
+      <h3>لوحة التحكم</h3>
+      <p class="muted">واجهة لإدارة إعدادات السيرفر.</p>
+    </div>
+
+  </div>
+
+  <div class="notice">
+    ⚠️ هذه نسخة الواجهة الأولية. إنشاء وتشغيل سيرفر حقيقي
+    يتطلب ربط الموقع بخدمة استضافة خلفية.
+  </div>
+
+</section>
+
+<!-- إنشاء سيرفر -->
+<section id="create" class="hidden section">
+
+  <h2>＋ إنشاء سيرفر جديد</h2>
+
+  <div class="card">
+
+    <label>اسم السيرفر</label>
+    <input id="serverName" maxlength="30"
+      placeholder="مثال: My Survival SMP">
+
+    <div class="form-grid">
+
+      <div>
+        <label>نوع ماينكرافت</label>
+        <select id="serverType">
+          <option value="Java">Java Edition</option>
+          <option value="Bedrock">Bedrock Edition</option>
+        </select>
+      </div>
+
+      <div>
+        <label>إصدار السيرفر</label>
+        <select id="serverVersion">
+          <option value="1.21.8">1.21.8</option>
+          <option value="1.21.7">1.21.7</option>
+          <option value="1.21.6">1.21.6</option>
+          <option value="1.21.5">1.21.5</option>
+          <option value="1.20.6">1.20.6</option>
+          <option value="1.20.4">1.20.4</option>
+        </select>
+      </div>
+
+    </div>
+
+    <label>نوع السيرفر</label>
+    <select id="serverSoftware">
+      <option value="Vanilla">Vanilla</option>
+      <option value="Paper">Paper</option>
+      <option value="Purpur">Purpur</option>
+    </select>
+
+    <div class="actions">
+      <button class="primary" onclick="createServer()">
+        إنشاء بيانات السيرفر
+      </button>
+
+      <button onclick="showPage('home')">رجوع</button>
+    </div>
+
+    <p class="muted">
+      هذا النموذج يسجل السيرفر في واجهة الموقع فقط،
+      ولا يشغّل Minecraft فعليًا حتى يتم ربط خدمة التشغيل.
+    </p>
+
+  </div>
+
+</section>
+
+<!-- السيرفرات -->
+<section id="servers" class="hidden section">
+
+  <h2>🖥️ سيرفراتي</h2>
+
+  <div id="serverList"></div>
+
+  <button class="primary" onclick="showPage('create')">
+    ＋ إنشاء سيرفر
+  </button>
+
+</section>
+
+<!-- إدارة السيرفر -->
+<section id="manage" class="hidden section">
+
+  <button onclick="showPage('servers')">← رجوع</button>
+
+  <h2 id="manageTitle">إدارة السيرفر</h2>
+
+  <div class="card">
+
+    <p>الحالة: <span class="status">واجهة تجريبية</span></p>
+
+    <p id="manageDetails" class="muted"></p>
+
+    <div class="actions">
+      <button class="primary" onclick="demoAction('تشغيل')">
+        ▶ تشغيل
+      </button>
+
+      <button class="danger" onclick="demoAction('إيقاف')">
+        ■ إيقاف
+      </button>
+
+      <button class="blue" onclick="demoAction('إعادة التشغيل')">
+        ↻ إعادة التشغيل
+      </button>
+    </div>
+
+    <hr>
+
+    <h3>⚙️ إعدادات السيرفر</h3>
+
+    <label>رسالة السيرفر</label>
+    <input id="motd" placeholder="Welcome to my SMP">
+
+    <label>أقصى عدد لاعبين</label>
+    <input id="maxPlayers" type="number" min="1" max="100"
+      value="20">
+
+    <div class="actions">
+      <button class="primary" onclick="saveSettings()">
+        حفظ الإعدادات التجريبية
+      </button>
+    </div>
+
+    <p class="muted">
+      الحفظ هنا محلي للواجهة فقط، وليس داخل ملفات سيرفر Minecraft.
+    </p>
+
+  </div>
+
+</section>
+
+<!-- البلوجينات -->
+<section id="plugins" class="hidden section">
+
+  <h2>🧩 البلوجينات</h2>
+
+  <div class="notice">
+    تركيب البلوجينات فعليًا يحتاج سيرفر Java متوافقًا،
+    وصلاحيات ملفات من خدمة الاستضافة الخلفية.
+  </div>
+
+  <div class="card">
+
+    <label>اسم البلوجين</label>
+    <input id="pluginName" placeholder="مثال: EssentialsX">
+
+    <label>السيرفر المستهدف</label>
+    <select id="pluginServer">
+      <option value="">اختر سيرفرًا</option>
+    </select>
+
+    <button class="primary" onclick="requestPlugin()">
+      تسجيل طلب البلوجين
     </button>
 
-    <button class="danger full" onclick="ownerAction('revoke')">
-      إلغاء تشغيل 24/7
+  </div>
+
+  <div id="pluginRequests"></div>
+
+</section>
+
+<!-- لوحة المالك -->
+<section id="owner" class="hidden section">
+
+  <h2>👑 لوحة مالك الاستضافة</h2>
+
+  <div class="notice">
+    هذه اللوحة تجريبية. إخفاؤها في الواجهة لا يحميها أمنيًا؛
+    يجب لاحقًا ربط صلاحيات المالك بخادم آمن.
+  </div>
+
+  <div class="card">
+
+    <h3>صلاحية المالك</h3>
+
+    <label>بريد المالك</label>
+    <input id="ownerEmail" type="email"
+      placeholder="أدخل بريد المالك للتحقق التجريبي">
+
+    <button class="blue" onclick="checkOwnerDemo()">
+      فتح أدوات المالك التجريبية
     </button>
 
-    <div id="ownerMessage" class="muted"></div>
-  </section>
+    <div id="ownerTools" class="hidden">
 
-  <section class="card">
-    <h2>🔌 البلوجينات</h2>
-    <p class="muted">
-      ستتوفر إدارة البلوجينات بعد ربط لوحة التحكم بخادم Minecraft حقيقي.
-      تثبيت البلوجينات يحتاج إلى التحقق من توافقها مع برنامج السيرفر وإصداره.
-    </p>
-  </section>
+      <hr>
 
-  <section class="card">
-    <h2>⏰ التشغيل 24/7</h2>
-    <p class="muted">
-      استمرار تشغيل السيرفر يعتمد على موارد الخادم الفعلي وسياسة الاستضافة.
-      هذه الصفحة لا تشغّل السيرفرات في الخلفية.
-    </p>
-  </section>
+      <h3>🕒 إدارة ميزة 24 ساعة</h3>
+
+      <label>اسم السيرفر</label>
+      <input id="grantName" placeholder="اكتب اسم السيرفر المسجل">
+
+      <div class="actions">
+        <button class="primary" onclick="grant24(true)">
+          منح ميزة 24 ساعة
+        </button>
+
+        <button class="danger" onclick="grant24(false)">
+          إلغاء ميزة 24 ساعة
+        </button>
+      </div>
+
+      <hr>
+
+      <h3>السيرفرات المسجلة</h3>
+      <div id="ownerServerList"></div>
+
+    </div>
+
+  </div>
+
+</section>
 
 </main>
 
 <footer>
-  <strong>⚡ SMP HOSTING</strong>
-  <p>مشروع استضافة Minecraft</p>
+  <strong>SMP HOSTING</strong>
+  <p>استضافتك، عالمك، مغامرتك.</p>
+  <p>نسخة واجهة أولية — لا تشغّل سيرفرات حقيقية بعد.</p>
 </footer>
 
 <script>
 const OWNER_EMAIL = "m20429873@gmail.com";
 
 let servers = [];
+let pluginRequests = [];
+let selectedServer = null;
 
-function showLogin() {
-  document.getElementById("loginCard").classList.remove("hidden");
-  document.getElementById("loginCard").scrollIntoView({
-    behavior: "smooth"
+function showPage(page) {
+  document.querySelectorAll("main > section").forEach(section => {
+    section.classList.add("hidden");
   });
-}
 
-function hideLogin() {
-  document.getElementById("loginCard").classList.add("hidden");
-}
+  const target = document.getElementById(page);
 
-function loginNotice() {
-  document.getElementById("loginMessage").textContent =
-    "تسجيل الدخول غير مفعّل بعد. يجب ربط Firebase Authentication أولًا.";
+  if (target) {
+    target.classList.remove("hidden");
+  }
+
+  if (page === "servers") renderServers();
+  if (page === "plugins") renderPluginServers();
+  if (page === "owner") renderOwnerServers();
+
+  window.scrollTo({ top: 0, behavior: "smooth" });
 }
 
 function createServer() {
   const name = document.getElementById("serverName").value.trim();
-  const edition = document.getElementById("edition").value;
-  const version = document.getElementById("version").value;
+  const type = document.getElementById("serverType").value;
+  const version = document.getElementById("serverVersion").value;
+  const software = document.getElementById("serverSoftware").value;
 
   if (!name) {
-    document.getElementById("createMessage").textContent =
-      "اكتب اسم السيرفر أولًا.";
+    alert("اكتب اسم السيرفر أولًا.");
     return;
   }
 
-  servers.push({
-    name: name,
-    edition: edition,
-    version: version,
-    online247: false
-  });
+  if (servers.some(server => server.name.toLowerCase() === name.toLowerCase())) {
+    alert("يوجد سيرفر بهذا الاسم بالفعل.");
+    return;
+  }
 
-  renderServers();
+  const server = {
+    id: Date.now(),
+    name,
+    type,
+    version,
+    software,
+    enabled24: false,
+    motd: "",
+    maxPlayers: 20
+  };
 
-  document.getElementById("createMessage").textContent =
-    "أُضيف السيرفر إلى القائمة التجريبية فقط. لم يتم إنشاء سيرفر فعلي.";
+  servers.push(server);
+
+  alert(
+    "تم تسجيل بيانات السيرفر في الواجهة.\n" +
+    "هذه ليست عملية تشغيل فعلية لسيرفر Minecraft."
+  );
 
   document.getElementById("serverName").value = "";
+
+  renderServers();
+  showPage("servers");
 }
 
 function renderServers() {
-  const list = document.getElementById("servers");
-  list.replaceChildren();
+  const list = document.getElementById("serverList");
 
   if (servers.length === 0) {
-    const empty = document.createElement("p");
-    empty.className = "muted";
-    empty.textContent = "لم تتم إضافة سيرفرات إلى القائمة بعد.";
-    list.appendChild(empty);
+    list.innerHTML = `
+      <div class="card">
+        <h3>لا توجد سيرفرات بعد</h3>
+        <p class="muted">أنشئ أول سيرفر لتظهر بياناته هنا.</p>
+      </div>`;
     return;
   }
 
-  servers.forEach(server => {
-    const box = document.createElement("div");
-    box.className = "server";
+  list.innerHTML = servers.map(server => `
+    <div class="card">
+      <div class="server-top">
+        <div class="server-icon">🟩</div>
+        <div>
+          <h3>${escapeHTML(server.name)}</h3>
+          <span class="tag">${escapeHTML(server.type)}</span>
+          <span class="tag">${escapeHTML(server.version)}</span>
+        </div>
+      </div>
 
-    const head = document.createElement("div");
-    head.className = "server-head";
+      <p class="muted">
+        البرنامج: ${escapeHTML(server.software)}
+      </p>
 
-    const title = document.createElement("span");
-    title.className = "server-name";
-    title.textContent = server.name;
+      <p class="status">
+        ${server.enabled24 ? "ميزة 24 ساعة ممنوحة" : "ميزة 24 ساعة غير ممنوحة"}
+      </p>
 
-    const badge = document.createElement("span");
-    badge.className = "tag";
-    badge.textContent = server.online247 ? "24/7 تجريبي" : "متوقف تجريبيًا";
-
-    head.append(title, badge);
-
-    const info = document.createElement("p");
-    info.className = "muted";
-    info.textContent = server.edition + " | الإصدار: " + server.version;
-
-    const actions = document.createElement("div");
-    actions.className = "actions";
-
-    const start = document.createElement("button");
-    start.className = "primary";
-    start.textContent = "▶ تشغيل";
-
-    start.onclick = () => {
-      alert("التشغيل الحقيقي يحتاج إلى ربط خادم الاستضافة.");
-    };
-
-    const stop = document.createElement("button");
-    stop.className = "secondary";
-    stop.textContent = "⏹ إيقاف";
-
-    stop.onclick = () => {
-      alert("إيقاف السيرفر الحقيقي يحتاج إلى ربط خادم الاستضافة.");
-    };
-
-    actions.append(start, stop);
-    box.append(head, info, actions);
-    list.appendChild(box);
-  });
+      <button class="primary" onclick="manageServer(${server.id})">
+        إدارة السيرفر
+      </button>
+    </div>
+  `).join("");
 }
 
-function ownerAction(action) {
-  const name = document.getElementById("ownerServer").value.trim();
+function manageServer(id) {
+  selectedServer = servers.find(server => server.id === id);
+
+  if (!selectedServer) return;
+
+  document.getElementById("manageTitle").textContent =
+    "إدارة: " + selectedServer.name;
+
+  document.getElementById("manageDetails").textContent =
+    selectedServer.type + " | " +
+    selectedServer.version + " | " +
+    selectedServer.software;
+
+  document.getElementById("motd").value = selectedServer.motd;
+  document.getElementById("maxPlayers").value = selectedServer.maxPlayers;
+
+  showPage("manage");
+}
+
+function demoAction(action) {
+  alert(
+    "زر " + action + " تجريبي فقط.\n" +
+    "سنربطه بخدمة تشغيل السيرفر لاحقًا."
+  );
+}
+
+function saveSettings() {
+  if (!selectedServer) return;
+
+  const maxPlayers = Number(document.getElementById("maxPlayers").value);
+
+  if (!Number.isInteger(maxPlayers) || maxPlayers < 1 || maxPlayers > 100) {
+    alert("أدخل عدد لاعبين صحيحًا من 1 إلى 100.");
+    return;
+  }
+
+  selectedServer.motd = document.getElementById("motd").value;
+  selectedServer.maxPlayers = maxPlayers;
+
+  alert("تم حفظ الإعدادات في الواجهة الحالية فقط.");
+}
+
+function renderPluginServers() {
+  const select = document.getElementById("pluginServer");
+
+  select.innerHTML = '<option value="">اختر سيرفرًا</option>';
+
+  servers
+    .filter(server => server.type === "Java")
+    .forEach(server => {
+      const option = document.createElement("option");
+      option.value = server.id;
+      option.textContent = server.name;
+      select.appendChild(option);
+    });
+
+  renderPluginRequests();
+}
+
+function requestPlugin() {
+  const name = document.getElementById("pluginName").value.trim();
+  const serverId = Number(document.getElementById("pluginServer").value);
+
+  if (!name || !serverId) {
+    alert("اكتب اسم البلوجين واختر سيرفر Java.");
+    return;
+  }
+
+  const server = servers.find(item => item.id === serverId);
+
+  if (!server) {
+    alert("السيرفر غير موجود.");
+    return;
+  }
+
+  pluginRequests.push({
+    name,
+    serverName: server.name
+  });
+
+  document.getElementById("pluginName").value = "";
+
+  renderPluginRequests();
+
+  alert("تم تسجيل طلب البلوجين في الواجهة فقط، ولم يتم تثبيته.");
+}
+
+function renderPluginRequests() {
+  const container = document.getElementById("pluginRequests");
+
+  if (pluginRequests.length === 0) {
+    container.innerHTML = "";
+    return;
+  }
+
+  container.innerHTML = `
+    <div class="card">
+      <h3>طلبات البلوجينات</h3>
+      ${pluginRequests.map(request => `
+        <p>
+          🧩 ${escapeHTML(request.name)}
+          — ${escapeHTML(request.serverName)}
+        </p>
+      `).join("")}
+    </div>
+  `;
+}
+
+function checkOwnerDemo() {
+  const email = document.getElementById("ownerEmail").value.trim().toLowerCase();
+
+  if (email !== OWNER_EMAIL.toLowerCase()) {
+    alert("هذا البريد ليس بريد المالك المحدد.");
+    return;
+  }
+
+  document.getElementById("ownerTools").classList.remove("hidden");
+
+  alert(
+    "تم فتح اللوحة التجريبية.\n" +
+    "هذا التحقق ليس تسجيل دخول آمنًا، وسيُستبدل بمصادقة حقيقية."
+  );
+
+  renderOwnerServers();
+}
+
+function grant24(enable) {
+  const email = document.getElementById("ownerEmail").value.trim().toLowerCase();
+
+  if (email !== OWNER_EMAIL.toLowerCase()) {
+    alert("أدخل بريد المالك المحدد أولًا.");
+    return;
+  }
+
+  const name = document.getElementById("grantName").value.trim();
 
   if (!name) {
-    document.getElementById("ownerMessage").textContent =
-      "اكتب اسم السيرفر أولًا.";
+    alert("اكتب اسم السيرفر.");
     return;
   }
 
-  document.getElementById("ownerMessage").textContent =
-    "لم يتم تغيير أي صلاحية. يجب تفعيل تسجيل دخول المالك وربط قاعدة البيانات والخادم أولًا.";
+  const server = servers.find(item =>
+    item.name.toLowerCase() === name.toLowerCase()
+  );
+
+  if (!server) {
+    alert("لم يتم العثور على سيرفر بهذا الاسم.");
+    return;
+  }
+
+  server.enabled24 = enable;
+
+  alert(
+    enable
+      ? "تم تسجيل منح الميزة تجريبيًا."
+      : "تم تسجيل إلغاء الميزة تجريبيًا."
+  );
+
+  renderServers();
+  renderOwnerServers();
 }
 
-/*
-  الأمان:
-  لا نعتبر البريد المكتوب في الصفحة دليلًا على هوية المالك.
-  يجب التحقق من المستخدم باستخدام Firebase Authentication،
-  ومن صلاحية المالك داخل الخادم قبل تنفيذ أي أمر إداري.
-*/
+function renderOwnerServers() {
+  const list = document.getElementById("ownerServerList");
+
+  if (!list) return;
+
+  if (servers.length === 0) {
+    list.innerHTML = "<p class='muted'>لا توجد سيرفرات مسجلة.</p>";
+    return;
+  }
+
+  list.innerHTML = servers.map(server => `
+    <div class="card">
+      <strong>${escapeHTML(server.name)}</strong>
+      <p class="muted">
+        ${escapeHTML(server.type)} — ${escapeHTML(server.version)}
+      </p>
+      <p class="status">
+        ${server.enabled24 ? "ميزة 24 ساعة: مفعلة تجريبيًا" : "ميزة 24 ساعة: غير مفعلة"}
+      </p>
+    </div>
+  `).join("");
+}
+
+function escapeHTML(value) {
+  return String(value).replace(/[&<>"']/g, character => ({
+    "&": "&amp;",
+    "<": "&lt;",
+    ">": "&gt;",
+    '"': "&quot;",
+    "'": "&#39;"
+  })[character]);
+}
+
+showPage("home");
 </script>
 
 </body>
-  </html>
+</html>
