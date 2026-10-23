@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SMP HOSTING</title>
+
+<style>
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #0b1020;
+    color: white;
+}
+
+header {
+    background: #111a2e;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #263653;
+}
+
+.logo {
+    font-size: 23px;
+    font-weight: bold;
+    color: #42f59b;
+}
+
+.badge {
+    background: #153d32;
+    color: #42f59b;
+    padding: 8px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+}
+
+.hero {
+    text-align: center;
+    padding: 55px 20px 35px;
+}
+
+.hero h1 {
+    font-size: 36px;
+    margin-bottom: 15px;
+}
+
+.hero h1 span {
+    color: #42f59b;
+}
+
+.hero p {
+    color: #aab8d0;
+    line-height: 1.9;
+}
+
+.container {
+    max-width: 900px;
+    margin: auto;
+    padding: 20px;
+}
+
+.card {
+    background: #111a2e;
+    border: 1px solid #263653;
+    border-radius: 15px;
+    padding: 22px;
+    margin-bottom: 20px;
+}
+
+.card h2 {
+    margin-top: 0;
+}
+
+.features {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 12px;
+    margin: 25px 0;
+}
+
+.feature {
+    background: #16223a;
+    padding: 18px 10px;
+    text-align: center;
+    border-radius: 12px;
+    border: 1px solid #263653;
+}
+
+.feature strong {
+    display: block;
+    margin-top: 10px;
+}
+
+label {
+    display: block;
+    margin: 15px 0 8px;
+    color: #d5deee;
+}
+
+input, select {
+    width: 100%;
+    padding: 13px;
+    border-radius: 8px;
+    border: 1px solid #344561;
+    background: #0b1020;
+    color: white;
+    font-size: 15px;
+}
+
+button {
+    width: 100%;
+    padding: 13px;
+    margin-top: 15px;
+    border: none;
+    border-radius: 9px;
+    background: #42f59b;
+    color: #07130d;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+button:active {
+    transform: scale(0.98);
+}
+
+button.secondary {
+    background: #263653;
+    color: white;
+}
+
+.status {
+    color: #ffcc66;
+    margin-top: 15px;
+    line-height: 1.8;
+    font-size: 14px;
+}
+
+.server {
+    border: 1px solid #263653;
+    background: #0d1528;
+    border-radius: 12px;
+    padding: 18px;
+    margin-top: 15px;
+}
+
+.server-title {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    align-items: center;
+}
+
+.server-status {
+    color: #ffcc66;
+    font-size: 13px;
+}
+
+footer {
+    text-align: center;
+    padding: 30px 15px;
+    color: #8190a9;
+    border-top: 1px solid #263653;
+    margin-top: 35px;
+}
+
+.small {
+    color: #aab8d0;
+    font-size: 13px;
+    line-height: 1.8;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <div class="logo">⚡ SMP HOSTING</div>
+    <div class="badge">FREE HOSTING</div>
+</header>
+
+<section class="hero">
+    <h1>استضافتك <span>بعالمك!</span></h1>
+    <p>
+        منصة استضافة ماينكرافت الخاصة بك.<br>
+        خطوتك الأولى نحو عالم SMP.
+    </p>
+</section>
+
+<main class="container">
+
+    <section class="features">
+        <div class="feature">
+            🎮
+            <strong>Java Edition</strong>
+        </div>
+
+        <div class="feature">
+            📱
+            <strong>Bedrock Edition</strong>
+        </div>
+
+        <div class="feature">
+            🌍
+            <strong>إصدارات متعددة</strong>
+        </div>
+
+        <div class="feature">
+            ⏰
+            <strong>هدفنا 24/7</strong>
+        </div>
+    </section>
+
+    <section class="card">
+        <h2>🚀 إنشاء سيرفر جديد</h2>
+
+        <label for="serverName">اسم السيرفر</label>
+        <input id="serverName"
+               type="text"
+               maxlength="24"
+               placeholder="مثال: My SMP">
+
+        <label for="edition">نوع السيرفر</label>
+        <select id="edition">
+            <option value="Java">Java Edition</option>
+            <option value="Bedrock">Bedrock Edition</option>
+        </select>
+
+        <label for="version">إصدار ماينكرافت</label>
+        <select id="version">
+            <option value="Latest">أحدث إصدار متاح</option>
+            <option value="1.21.8">1.21.8</option>
+            <option value="1.21.4">1.21.4</option>
+            <option value="1.20.4">1.20.4</option>
+        </select>
+
+        <button onclick="createServer()">
+            + إنشاء سيرفر
+        </button>
+
+        <p class="status" id="message">
+            هذه واجهة تجريبية. يلزم ربطها بخادم فعلي لإنشاء السيرفرات.
+        </p>
+    </section>
+
+    <section class="card">
+        <h2>🖥️ سيرفراتي</h2>
+
+        <div id="servers">
+            <p class="small">
+                لم تتم إضافة سيرفرات بعد.
+            </p>
+        </div>
+    </section>
+
+    <section class="card">
+        <h2>⚙️ التشغيل المستمر</h2>
+
+        <p class="small">
+            هدفنا توفير تشغيل مستمر على مدار 24 ساعة.
+            يتطلب ذلك خادم استضافة فعليًا يدعم التشغيل الدائم.
+            أزرار التشغيل في هذه النسخة تجريبية، ولم تُربط بخادم حقيقي.
+        </p>
+
+        <button class="secondary" onclick="showInfo()">
+            معلومات الاستضافة
+        </button>
+
+        <p id="info" class="small"></p>
+    </section>
+
+</main>
+
+<footer>
+    <p>⚡ SMP HOSTING</p>
+    <p>مشروع استضافة Minecraft الخاص بك</p>
+</footer>
+
+<script>
+let servers = [];
+
+function createServer() {
+    const name = document.getElementById("serverName").value.trim();
+    const edition = document.getElementById("edition").value;
+    const version = document.getElementById("version").value;
+    const message = document.getElementById("message");
+
+    if (!name) {
+        message.textContent = "اكتب اسم السيرفر أولًا.";
+        return;
+    }
+
+    const server = {
+        id: Date.now(),
+        name: name,
+        edition: edition,
+        version: version
+    };
+
+    servers.push(server);
+    renderServers();
+
+    message.textContent =
+        "تمت إضافة السيرفر إلى القائمة التجريبية. لم يتم تشغيل سيرفر ماينكرافت فعليًا.";
+
+    document.getElementById("serverName").value = "";
+}
+
+function renderServers() {
+    const container = document.getElementById("servers");
+
+    container.innerHTML = "";
+
+    servers.forEach(server => {
+        const box = document.createElement("div");
+        box.className = "server";
+
+        const title = document.createElement("div");
+        title.className = "server-title";
+
+        const heading = document.createElement("strong");
+        heading.textContent = server.name;
+
+        const status = document.createElement("span");
+        status.className = "server-status";
+        status.textContent = "واجهة تجريبية";
+
+        title.appendChild(heading);
+        title.appendChild(status);
+
+        const details = document.createElement("p");
+        details.className = "small";
+        details.textContent =
+            server.edition + " | الإصدار: " + server.version;
+
+        const button = document.createElement("button");
+        button.textContent = "▶ تشغيل السيرفر";
+
+        button.onclick = function() {
+            document.getElementById("message").textContent =
+                "زر التشغيل جاهز للواجهة فقط. يجب ربط لوحة التحكم بخادم فعلي حتى يعمل السيرفر.";
+        };
+
+        const stopButton = document.createElement("button");
+        stopButton.className = "secondary";
+        stopButton.textContent = "⏹ إيقاف السيرفر";
+
+        stopButton.onclick = function() {
+            document.getElementById("message").textContent =
+                "لا يوجد سيرفر فعلي لإيقافه في النسخة التجريبية.";
+        };
+
+        box.appendChild(title);
+        box.appendChild(details);
+        box.appendChild(button);
+        box.appendChild(stopButton);
+
+        container.appendChild(box);
+    });
+}
+
+function showInfo() {
+    document.getElementById("info").textContent =
+        "هذه النسخة واجهة أمامية فقط. نحتاج إلى خادم فعلي وواجهة برمجية آمنة لتشغيل سيرفرات Java وBedrock على مدار الساعة.";
+}
+</script>
+
+</body>
+  </html>
